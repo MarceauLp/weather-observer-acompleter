@@ -2,10 +2,11 @@ package observable;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
 
 import views.DateView;
 
-public class DateSimulator {
+public class DateSimulator extends Observable {
     public DateSimulator() {
 
     }
@@ -56,6 +57,8 @@ public class DateSimulator {
     protected void incrementDate() {
 
 	dateDuJour.add(Calendar.DAY_OF_MONTH, 1);
+	setChanged();
+	notifyObservers();
 	updateView();
 
     }

@@ -2,54 +2,64 @@ package views;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import observable.WeatherSimulator;
 
-public class MeteoView1 extends JFrame {
+public class MeteoView1 extends JFrame implements Observer{
 
     private WeatherSimulator simulator;
 
     private JLabel labelTemperature = null;
 
     public WeatherSimulator getSimulator() {
-	return simulator;
+		return simulator;
     }
 
     public void setSimulator(WeatherSimulator simulator) {
-	this.simulator = simulator;
+		this.simulator = simulator;
+		simulator.addObserver(this); // Ajouter cette vue comme observateur
     }
 
     public MeteoView1(String title) {
-	super(title);
+		super(title);
 
-	setSize(200, 300);
+		setSize(200, 300);
 
-	labelTemperature = new JLabel("Temperature actuelle : --- ");
-	this.getContentPane().add(labelTemperature);
+		labelTemperature = new JLabel("Temperature actuelle : --- ");
+		this.getContentPane().add(labelTemperature);
 
-	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-	addWindowListener(new WindowAdapter() {
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
 
-	    @Override
-	    public void windowClosing(WindowEvent e) {
-		if (MeteoView1.this.simulator != null) {
-		    MeteoView1.this.simulator.stop();
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (MeteoView1.this.simulator != null) {
+					MeteoView1.this.simulator.stop();
 
-		}
-		super.windowClosing(e);
-	    }
+				}
+				super.windowClosing(e);
+			}
 
-	});
+		});
 
     }
 
     public void update() {
-	labelTemperature.setText("Temperature actuelle : " + simulator.getTemperature() + " °C");
-	System.out.println("MAJ VIEW 1");
-
+		labelTemperature.setText("Temperature actuelle : " + simulator.getTemperature() + " °C");
+		System.out.println("MAJ VIEW 1");
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		// throw new UnsupportedOperationException("Unimplemented method 'update'");
+		labelTemperature.setText("Temperature actuelle : " + simulator.getTemperature() + " °C");
+        System.out.println("MAJ VIEW 1");
+	}
 
 }

@@ -1,18 +1,20 @@
 package observable;
 
+import java.util.Observable;
+
 import views.MeteoView1;
 
-public class WeatherSimulator {
+public class WeatherSimulator extends Observable {
 
     private Thread th = null;
     private int temperature = 15;
 
     public int getTemperature() {
-	return temperature;
+		return temperature;
     }
 
     public int getPctHumidite() {
-	return pctHumidite;
+		return pctHumidite;
     }
 
     private int pctHumidite = 20;
@@ -55,22 +57,24 @@ public class WeatherSimulator {
 
     protected void randomizeWeather() {
 
-	int rand = (int) Math.round(Math.random() * 4 - 2);
-	temperature += rand;
+		int rand = (int) Math.round(Math.random() * 4 - 2);
+		temperature += rand;
 
-	if (temperature < -5)
-	    temperature = 5;
+		if (temperature < -5)
+			temperature = 5;
 
-	if (temperature > 45)
-	    temperature = 45;
+		if (temperature > 45)
+			temperature = 45;
 
-	rand = (int) Math.round(Math.random() * 60 - 40);
-	pctHumidite += rand;
+		rand = (int) Math.round(Math.random() * 60 - 40);
+		pctHumidite += rand;
 
-	pctHumidite = Math.min(100, pctHumidite);
-	pctHumidite = Math.max(0, pctHumidite);
+		pctHumidite = Math.min(100, pctHumidite);
+		pctHumidite = Math.max(0, pctHumidite);
+		setChanged();
+		notifyObservers();
 
-	updateView();
+		updateView();
 
     }
 
