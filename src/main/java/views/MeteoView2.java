@@ -45,7 +45,7 @@ public class MeteoView2 extends JFrame implements Observer{
         // throw new UnsupportedOperationException("Unimplemented method 'update'");
         if (arg instanceof Map) {
             Map<String, Integer> weatherData = (Map<String, Integer>) arg;
-            int humidite = weatherData.get("humidity");
+            int humidite = weatherData.get("humidite");
             labelHumidite.setText("Humidité actuelle : " + humidite + " %");
             System.out.println("MAJ VIEW 2");
         }

@@ -77,7 +77,7 @@ public class WeatherSimulator extends Observable {
 
 		Map<String, Integer> weatherData = new HashMap<>();
 		weatherData.put("temperature", temperature);
-		weatherData.put("humidity", pctHumidite);
+		weatherData.put("humidite", pctHumidite);
 		notifyObservers(weatherData);
 		// notifyObservers(pctHumidite);
 		// notifyObservers(temperature);
