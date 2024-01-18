@@ -1,5 +1,7 @@
 package observable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 // import views.MeteoView1;
@@ -72,7 +74,13 @@ public class WeatherSimulator extends Observable {
 		pctHumidite = Math.min(100, pctHumidite);
 		pctHumidite = Math.max(0, pctHumidite);
 		setChanged();
-		notifyObservers(temperature);
+
+		Map<String, Integer> weatherData = new HashMap<>();
+		weatherData.put("temperature", temperature);
+		weatherData.put("humidity", pctHumidite);
+		notifyObservers(weatherData);
+		// notifyObservers(pctHumidite);
+		// notifyObservers(temperature);
 
 		// updateView();
 

@@ -2,6 +2,7 @@ package views;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -60,8 +61,11 @@ public class MeteoView1 extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		// throw new UnsupportedOperationException("Unimplemented method 'update'");
 
-		if (arg instanceof Integer) {
-            int temperature = (Integer) arg;
+		if (arg instanceof Map) {
+
+			Map<String, Integer> weatherData = (Map<String, Integer>) arg;
+			int temperature = weatherData.get("temperature");
+            // int temperature = (Integer) arg;
             labelTemperature.setText("Temperature actuelle : " + temperature + " °C");
             System.out.println("MAJ VIEW 1");
         }

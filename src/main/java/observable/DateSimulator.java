@@ -16,7 +16,7 @@ public class DateSimulator extends Observable {
     private Calendar dateDuJour = new GregorianCalendar();
 
     public Calendar getDateDuJour() {
-	return dateDuJour;
+		return dateDuJour;
     }
 
     public void start() {
