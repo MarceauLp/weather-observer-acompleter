@@ -4,14 +4,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Observable;
 
-import views.DateView;
+// import views.DateView;
 
 public class DateSimulator extends Observable {
     public DateSimulator() {
 
     }
 
-    private DateView view;
+    // private DateView view;
     private Thread th = null;
     private Calendar dateDuJour = new GregorianCalendar();
 
@@ -37,6 +37,8 @@ public class DateSimulator extends Observable {
 
 			isinterrupted = true;
 		    }
+			setChanged();
+			notifyObservers();
 		    incrementDate();
 
 		}
@@ -48,31 +50,31 @@ public class DateSimulator extends Observable {
     }
 
     public void stop() {
-	if (th != null && th.isAlive()) {
-	    th.interrupt();
-	    th = null;
-	}
+		if (th != null && th.isAlive()) {
+			th.interrupt();
+			th = null;
+		}
     }
 
     protected void incrementDate() {
 
-	dateDuJour.add(Calendar.DAY_OF_MONTH, 1);
-	setChanged();
-	notifyObservers();
-	updateView();
+		dateDuJour.add(Calendar.DAY_OF_MONTH, 1);
+		setChanged();
+		notifyObservers(dateDuJour);
+		// updateView();
 
     }
 
-    private void updateView() {
-	if (view != null) {
-	    view.update();
-	}
+    // private void updateView() {
+	// 	if (view != null) {
+	// 		view.update(null, dateDuJour);
+	// 	}
 
-    }
+    // }
 
-    public void setView(DateView pView) {
-	view = pView;
+    // public void setView(DateView pView) {
+	// 	view = pView;
 
-    }
+    // }
 
 }

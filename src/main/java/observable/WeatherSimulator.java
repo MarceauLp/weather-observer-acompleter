@@ -2,7 +2,7 @@ package observable;
 
 import java.util.Observable;
 
-import views.MeteoView1;
+// import views.MeteoView1;
 
 public class WeatherSimulator extends Observable {
 
@@ -18,7 +18,7 @@ public class WeatherSimulator extends Observable {
     }
 
     private int pctHumidite = 20;
-    private MeteoView1 view;
+    // private MeteoView1 view;
 
     public void start() {
 
@@ -72,22 +72,21 @@ public class WeatherSimulator extends Observable {
 		pctHumidite = Math.min(100, pctHumidite);
 		pctHumidite = Math.max(0, pctHumidite);
 		setChanged();
-		notifyObservers();
+		notifyObservers(temperature);
 
-		updateView();
-
-    }
-
-    private void updateView() {
-	if (view != null) {
-	    view.update();
-	}
+		// updateView();
 
     }
 
-    public void setView(MeteoView1 pView) {
-	view = pView;
+    // private void updateView() {
+	// 	if (view != null) {
+	// 		view.update();
+	// 	}
+    // }
 
-    }
+    // public void setView(MeteoView1 pView) {
+	// view = pView;
+
+    // }
 
 }

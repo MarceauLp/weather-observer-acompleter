@@ -6,22 +6,22 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import observable.WeatherSimulator;
+// import observable.WeatherSimulator;
 
 public class MeteoView2 extends JFrame implements Observer{
 
-    private WeatherSimulator simulator;
+    // private WeatherSimulator simulator;
 
     private JLabel labelHumidite = null;
 
-    public WeatherSimulator getSimulator() {
-	    return simulator;
-    }
+    // public WeatherSimulator getSimulator() {
+	//     return simulator;
+    // }
 
-    public void setSimulator(WeatherSimulator simulator) {
-	    this.simulator = simulator;
-        simulator.addObserver(this); // Ajouter cette vue comme observateur
-    }
+    // public void setSimulator(WeatherSimulator simulator) {
+	//     this.simulator = simulator;
+    //     simulator.addObserver(this); // Ajouter cette vue comme observateur
+    // }
 
     public MeteoView2(String title) {
         super(title);
@@ -33,17 +33,19 @@ public class MeteoView2 extends JFrame implements Observer{
 
     }
 
-    public void update() {
-        labelHumidite.setText("Humidité actuelle : " + simulator.getPctHumidite() + " %");
-        System.out.println("MAJ VIEW 2");
-    }
+    // public void update() {
+    //     labelHumidite.setText("Humidité actuelle : " + simulator.getPctHumidite() + " %");
+    //     System.out.println("MAJ VIEW 2");
+    // }
 
     @Override
     public void update(Observable o, Object arg) {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'update'");
-        labelHumidite.setText("Humidité actuelle : " + simulator.getPctHumidite() + " %");
-        System.out.println("MAJ VIEW 2");
+        if (arg instanceof Integer) {
+            int humidite = (Integer) arg;
+            labelHumidite.setText("Humidité actuelle : " + humidite + " %");
+        }
     }
 
 }
